@@ -1,0 +1,116 @@
+:root {
+  --bg: #f3f5f9;
+  --bg-paper: #fbfaf7;
+  --ink: #10182b;
+  --ink-muted: #4b5567;
+  --accent: #1d4ed8;
+  --accent-ink: #ffffff;
+  --line: rgba(16, 24, 43, 0.14);
+  --line-soft: rgba(16, 24, 43, 0.08);
+  --shadow: rgba(16, 24, 43, 0.12);
+
+  --font-body: var(--font-sans), 'Segoe UI', sans-serif;
+  --font-label: var(--font-mono), 'SFMono-Regular', monospace;
+
+  --max-width: 1080px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #081a33;
+    --bg-paper: #0d2748;
+    --ink: #eaf1ff;
+    --ink-muted: #93afdc;
+    --accent: #5b9cff;
+    --accent-ink: #06142a;
+    --line: rgba(234, 241, 255, 0.16);
+    --line-soft: rgba(234, 241, 255, 0.08);
+    --shadow: rgba(0, 0, 0, 0.4);
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+}
+
+/* In-page nav uses ScrollLink (scrollIntoView) for smooth motion, so the browser's
+   default (instant) fragment jump is kept for direct/deep links on initial load. */
+section[id] {
+  scroll-margin-top: 84px;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1,
+h2,
+h3,
+h4,
+p,
+ul,
+ol,
+figure {
+  margin: 0;
+}
+
+ul,
+ol {
+  padding: 0;
+  list-style: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}

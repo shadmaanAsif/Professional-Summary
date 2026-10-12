@@ -1,31 +1,34 @@
 import type { AIInnovationContent } from '@/data/aiInnovation'
-import styles from './AIInnovation.module.css'
+import { Section } from '@/components/ui/section'
+import { SectionHeading } from '@/components/ui/section-heading'
+import { BentoGrid, BentoCard } from '@/components/ui/bento-grid'
+import { Reveal } from '@/components/ui/reveal'
 
 export default function AIInnovation({ content }: { content: AIInnovationContent }) {
   return (
-    <section id="ai" className={styles.section} aria-labelledby="ai-heading">
-      <p className={styles.sheetLabel}>SHEET 10 — AI &amp; INNOVATION</p>
-      <h2 id="ai-heading" className={styles.heading}>
-        {content.heading}
-      </h2>
-      <p className={styles.intro}>{content.intro}</p>
+    <Section id="ai">
+      <SectionHeading eyebrow="AI & Innovation" title={content.heading} description={content.intro} />
 
-      <div className={styles.grid}>
-        {content.capabilities.map((capability) => (
-          <div key={capability.title} className={styles.card}>
-            <h3 className={styles.cardTitle}>{capability.title}</h3>
-            <p className={styles.cardDetail}>{capability.detail}</p>
-          </div>
+      <BentoGrid className="sm:grid-cols-2">
+        {content.capabilities.map((capability, index) => (
+          <Reveal key={capability.title} delay={(index % 2) * 0.06}>
+            <BentoCard className="h-full">
+              <h3 className="text-sm font-semibold text-foreground">{capability.title}</h3>
+              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{capability.detail}</p>
+            </BentoCard>
+          </Reveal>
         ))}
-      </div>
+      </BentoGrid>
 
-      <div className={styles.story}>
-        <p className={styles.storyText}>{content.adoptionStory}</p>
-        <div className={styles.metric}>
-          <span className={styles.metricValue}>{content.metric.value}</span>
-          <span className={styles.metricLabel}>{content.metric.label}</span>
+      <Reveal delay={0.1}>
+        <div className="mt-6 flex flex-col gap-6 rounded-2xl border border-brand/25 bg-brand/[0.06] p-6 sm:flex-row sm:items-center sm:justify-between sm:gap-10">
+          <p className="max-w-2xl text-[15px] leading-relaxed text-foreground/90">{content.adoptionStory}</p>
+          <div className="shrink-0 sm:max-w-[220px] sm:text-right">
+            <p className="font-mono text-xs uppercase tracking-wide text-muted-foreground">{content.metric.label}</p>
+            <p className="mt-1.5 text-lg font-semibold text-brand">{content.metric.value}</p>
+          </div>
         </div>
-      </div>
-    </section>
+      </Reveal>
+    </Section>
   )
 }

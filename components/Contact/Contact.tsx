@@ -1,36 +1,46 @@
-import type { ContactContent } from '@/data/profile'
-import styles from './Contact.module.css'
+import { ArrowUpRight, Mail } from 'lucide-react'
+import type { ContactContent, ContactLink } from '@/data/profile'
+import { Section } from '@/components/ui/section'
+import { SectionHeading } from '@/components/ui/section-heading'
+import { Reveal } from '@/components/ui/reveal'
+import { GithubIcon, LinkedinIcon } from '@/components/icons/BrandIcons'
+
+const ICONS: Record<string, React.ElementType> = {
+  Email: Mail,
+  LinkedIn: LinkedinIcon,
+  GitHub: GithubIcon,
+}
+
+function LinkIcon({ label }: { label: ContactLink['label'] }) {
+  const Icon = ICONS[label] ?? ArrowUpRight
+  return <Icon className="size-4" />
+}
 
 export default function Contact({ contact }: { contact: ContactContent }) {
   return (
-    <section id="contact" className={styles.section} aria-labelledby="contact-heading">
-      <p className={styles.sheetLabel}>SHEET 13 — CONTACT</p>
-      <h2 id="contact-heading" className={styles.heading}>
-        {contact.heading}
-      </h2>
+    <Section id="contact">
+      <SectionHeading eyebrow="Contact" title={contact.heading} description={contact.message} />
 
-      <p className={styles.message}>{contact.message}</p>
-
-      <ul className={styles.links}>
-        {contact.links.map((link) => (
-          <li key={link.label}>
+      <ul className="flex flex-col divide-y divide-border border-y border-border">
+        {contact.links.map((link, index) => (
+          <Reveal as="li" key={link.label} delay={Math.min(index * 0.05, 0.15)}>
             <a
-              className={styles.link}
               href={link.href}
               target={link.href.startsWith('http') ? '_blank' : undefined}
               rel={link.href.startsWith('http') ? 'noreferrer noopener' : undefined}
+              className="group flex items-center justify-between gap-4 py-5 transition-colors hover:text-brand"
             >
-              <span className={styles.linkLabel}>{link.label}</span>
-              <span className={styles.linkValue}>{link.value}</span>
-              <span className={styles.linkArrow} aria-hidden="true">
-                ↗
+              <span className="flex items-center gap-3">
+                <LinkIcon label={link.label} />
+                <span className="text-base font-medium">{link.value}</span>
               </span>
+              <ArrowUpRight className="size-4 text-muted-foreground transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-brand" />
             </a>
-          </li>
+          </Reveal>
         ))}
       </ul>
 
-      <p className={styles.location}>{contact.location}</p>
-    </section>
+      <p className="mt-6 text-sm text-muted-foreground">{contact.location}</p>
+    </Section>
   )
 }

@@ -23,18 +23,17 @@ import AIInnovation from '@/components/AIInnovation/AIInnovation'
 import DecisionLog from '@/components/DecisionLog/DecisionLog'
 import EngineeringNotes from '@/components/EngineeringNotes/EngineeringNotes'
 import Contact from '@/components/Contact/Contact'
-import styles from './PortfolioShell.module.css'
 
 const NAV_SECTIONS = [
-  { id: 'home', label: 'Home', number: '01' },
-  { id: 'about', label: 'About', number: '02' },
-  { id: 'experience', label: 'Experience', number: '03' },
-  { id: 'architecture', label: 'Architecture', number: '04' },
-  { id: 'impact', label: 'Impact', number: '05' },
-  { id: 'case-studies', label: 'Case Studies', number: '06' },
-  { id: 'ai', label: 'AI & Innovation', number: '07' },
-  { id: 'notes', label: 'Notes', number: '08' },
-  { id: 'contact', label: 'Contact', number: '09' },
+  { id: 'home', label: 'Home' },
+  { id: 'about', label: 'About' },
+  { id: 'experience', label: 'Experience' },
+  { id: 'architecture', label: 'Architecture' },
+  { id: 'impact', label: 'Impact' },
+  { id: 'case-studies', label: 'Case Studies' },
+  { id: 'ai', label: 'AI & Innovation' },
+  { id: 'notes', label: 'Notes' },
+  { id: 'contact', label: 'Contact' },
 ] as const
 
 interface PortfolioShellProps {
@@ -138,14 +137,14 @@ export default function PortfolioShell({
   const activeLabel = NAV_SECTIONS.find((section) => section.id === active)?.label ?? ''
 
   return (
-    <div className={styles.shell}>
+    <div className="flex min-h-screen flex-col">
       <Nav sections={NAV_SECTIONS} active={active} name={profile.hero.name} />
 
       <p aria-live="polite" className="visually-hidden">
         {activeLabel} section
       </p>
 
-      <main className={styles.stage}>
+      <main className="flex-1">
         <Hero hero={profile.hero} />
         <ImpactStrip stats={profile.headlineStats} />
         <About about={profile.about} />
@@ -161,11 +160,11 @@ export default function PortfolioShell({
         <Contact contact={profile.contact} />
       </main>
 
-      <footer className={styles.titleBlock}>
+      <footer className="flex flex-wrap items-center justify-center gap-2.5 border-t border-border px-6 py-5 text-center font-mono text-[11px] tracking-wide text-muted-foreground">
         <span>{profile.hero.name.toUpperCase()}</span>
-        <span className={styles.titleBlockDivider} aria-hidden="true" />
+        <span aria-hidden="true" className="h-[3px] w-[3px] rounded-full bg-muted-foreground/60" />
         <span>{profile.education}</span>
-        <span className={styles.titleBlockDivider} aria-hidden="true" />
+        <span aria-hidden="true" className="h-[3px] w-[3px] rounded-full bg-muted-foreground/60" />
         <span>{profile.hero.location}</span>
       </footer>
     </div>

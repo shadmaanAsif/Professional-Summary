@@ -1,37 +1,46 @@
 import Link from 'next/link'
+import { ArrowRight } from 'lucide-react'
 import type { CaseStudy } from '@/data/caseStudies'
-import styles from './CaseStudies.module.css'
+import { Section } from '@/components/ui/section'
+import { SectionHeading } from '@/components/ui/section-heading'
+import { Reveal } from '@/components/ui/reveal'
+import { Chip } from '@/components/ui/chip'
 
 export default function CaseStudies({ caseStudies }: { caseStudies: CaseStudy[] }) {
   return (
-    <section id="case-studies" className={styles.section} aria-labelledby="case-studies-heading">
-      <p className={styles.sheetLabel}>SHEET 08 — CASE STUDIES</p>
-      <h2 id="case-studies-heading" className={styles.heading}>
-        Case Studies
-      </h2>
-      <p className={styles.intro}>
-        Six initiatives from my time at Almosafer, each following the same shape: problem,
-        decision, trade-offs, implementation, and measured impact.
-      </p>
+    <Section id="case-studies">
+      <SectionHeading
+        eyebrow="Case Studies"
+        title="Seven initiatives, one shape: problem, decision, trade-offs, impact"
+      />
 
-      <div className={styles.grid}>
-        {caseStudies.map((study) => (
-          <Link key={study.slug} href={`/case-studies/${study.slug}`} className={styles.card}>
-            <p className={styles.code}>{study.code}</p>
-            <h3 className={styles.title}>{study.title}</h3>
-            <p className={styles.summary}>{study.summary}</p>
-            <ul className={styles.stack}>
-              {study.stack.map((tech) => (
-                <li key={tech}>{tech}</li>
-              ))}
-            </ul>
-            <span className={styles.link}>
-              Read the case study
-              <span aria-hidden="true">→</span>
-            </span>
-          </Link>
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+        {caseStudies.map((study, index) => (
+          <Reveal key={study.slug} delay={(index % 2) * 0.06}>
+            <Link
+              href={`/case-studies/${study.slug}`}
+              className="group flex h-full flex-col rounded-2xl border border-border bg-card p-6 transition-colors duration-200 hover:border-brand/40 hover:bg-accent/60"
+            >
+              <p className="font-mono text-[11px] tracking-wide text-muted-foreground">{study.code}</p>
+              <h3 className="mt-2 text-lg font-semibold text-foreground">{study.title}</h3>
+              <p className="mt-3 flex-1 text-sm leading-relaxed text-muted-foreground">{study.summary}</p>
+
+              <ul className="mt-5 flex flex-wrap gap-2">
+                {study.stack.map((tech) => (
+                  <li key={tech}>
+                    <Chip>{tech}</Chip>
+                  </li>
+                ))}
+              </ul>
+
+              <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-brand">
+                Read the case study
+                <ArrowRight className="size-3.5 transition-transform duration-200 group-hover:translate-x-1" />
+              </span>
+            </Link>
+          </Reveal>
         ))}
       </div>
-    </section>
+    </Section>
   )
 }

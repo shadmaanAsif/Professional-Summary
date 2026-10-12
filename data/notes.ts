@@ -5,28 +5,32 @@ export interface EngineeringNote {
 
 export const engineeringNotes: EngineeringNote[] = [
   {
-    title: 'Why I extracted a shared SDK layer instead of syncing three codebases by hand',
+    title: 'Why I extracted business logic into a shared SDK layer',
     detail:
-      'Three clients, one set of business rules, and no shared layer meant every rule change had to land three times — and drift between them was only a matter of when, not if. A shared SDK abstraction is more upfront design work, but it turns three copies of the truth into one.',
+      'Multiple client applications were each carrying the same business logic. Decoupling presentation components from it behind an SDK abstraction layer eliminated ~60% of the duplicated logic.',
   },
   {
     title: 'Performance is a default, not a later optimization pass',
     detail:
-      'SSR, code splitting, and asset budgets are easy to defer until "there\'s time." Treating them as standard on every feature — not a cleanup sprint — is what actually took bundle size down 65% and kept it there.',
+      'SSR, SSG, code splitting, lazy loading, profiling, and asset optimization took bundle size down 65% and improved LCP ~45% — which lifted organic traffic ~25%.',
   },
   {
-    title: 'Predictable data flow beats ad-hoc state, even when it\'s slower to write at first',
+    title: 'Predictable data flow beats ad-hoc state',
     detail:
-      'Ad-hoc state is fast to write and slow to trust. Moving to MobX and React Query cost some upfront convention-setting, and paid it back in fewer state-related defects and a new-engineer ramp-up measured in days instead of weeks.',
+      'Replacing ad-hoc patterns with MobX and React Query gave a predictable, testable data flow — state-related defects fell ~35% and new-engineer ramp-up dropped from weeks to days.',
   },
   {
-    title: 'What it actually took to get a team shipping with AI daily',
+    title: 'Moving a team from AI experiments to shipping with AI daily',
     detail:
-      "The gap between individual engineers experimenting with AI tools and a team shipping with them daily isn't the tools — it's the shared conventions for how and when to use them. That's what turned Claude Code, Cursor, and Copilot into a ~25% delivery-speed gain instead of a novelty.",
+      'Team-wide adoption of Claude Code, Cursor, and GitHub Copilot, alongside MCP-based tooling, AI-powered UI prototyping, and AI-assisted code review, accelerated feature delivery ~25%.',
   },
   {
-    title: 'Architecture is a shared contract, not a frontend concern',
+    title: 'Turning architecture trade-offs into reporting stakeholders can act on',
+    detail: 'I translate architecture and delivery trade-offs into clear technical reporting that senior stakeholders can act on.',
+  },
+  {
+    title: 'Why aggregation belongs in a backend-for-frontend layer',
     detail:
-      "The SDK layer, the monorepo, and the delivery pipeline weren't frontend-only decisions. They defined how product, backend, and platform teams share contracts, deployment workflows, and release cadence — which is why they needed buy-in beyond the frontend team.",
+      'Letting each client orchestrate its own calls to REST and GraphQL services looks simpler until another client needs the same aggregation logic. Next.js API routes and Express.js services aggregate those downstream endpoints into optimized payloads once, instead of in every client.',
   },
 ]

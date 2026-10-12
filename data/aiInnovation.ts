@@ -14,26 +14,34 @@ export interface AIInnovationContent {
 export const aiInnovation: AIInnovationContent = {
   heading: 'AI & Innovation',
   intro:
-    'I treat AI-assisted engineering as a deliberate team practice, not an individual habit — the same way I treat any other platform decision: evaluate it, standardize it, and measure what it changes.',
+    'I treat AI-assisted engineering as a team-wide practice, not an individual habit — adopted deliberately and measured by what it changes in delivery.',
   capabilities: [
     {
       title: 'AI Pair-Programming & Coding Agents',
-      detail: 'Daily use of Claude Code, Cursor, and GitHub Copilot across the team, not just individual experimentation.',
+      detail: 'Drove team-wide adoption of Claude Code, Cursor, and GitHub Copilot.',
     },
     {
       title: 'Prompt Engineering & LLM API Integrations',
-      detail: 'Hands-on prompt engineering and direct LLM API integration work, beyond just consuming chat-based tools.',
+      detail: 'Prompt engineering and LLM API integrations.',
     },
     {
       title: 'Model Context Protocol (MCP) Tooling',
-      detail: 'MCP-based tooling wired into the team’s existing development workflow rather than bolted on separately.',
+      detail: 'MCP-based tooling adopted team-wide alongside the AI coding tools.',
     },
     {
-      title: 'AI-Assisted Code Review & Automation',
-      detail: 'AI-assisted review and automation folded into the standard PR process, alongside the code-review standards that already cut turnaround ~50%.',
+      title: 'AI-Assisted Code Review',
+      detail: 'AI-assisted code review, adopted team-wide alongside MCP-based tooling as part of the AI-assisted delivery work.',
+    },
+    {
+      title: 'AI-Powered UI Prototyping',
+      detail: 'AI-powered UI prototyping, part of the team-wide AI adoption.',
+    },
+    {
+      title: 'JavaScript & Node.js Automation',
+      detail: 'Automation tooling I build independently in JavaScript and Node.js.',
     },
   ],
   adoptionStory:
-    "I drove my team's shift from experimenting with AI-assisted development to shipping with it daily. That meant setting shared conventions for how the tools get used, not just giving engineers access to them — the difference between a novelty and a practice that compounds.",
-  metric: { label: 'Feature delivery speed', value: '~+25%, from AI-assisted delivery' },
+    "I drove my team's shift from experimenting with AI-assisted development to shipping with it daily.",
+  metric: { label: 'Feature delivery speed', value: '~25% faster with AI-assisted delivery' },
 }

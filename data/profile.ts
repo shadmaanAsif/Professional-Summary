@@ -388,7 +388,7 @@ export const profile: Profile = {
     message: "I'm open to remote and hybrid roles where I can set technical direction across teams. If that's what you're hiring for, reach out.",
     links: [
       { label: 'Email', value: 'shadmanasif10@gmail.com', href: 'mailto:shadmanasif10@gmail.com' },
-      { label: 'LinkedIn', value: 'mohammad-shadmaan-asif', href: 'https://linkedin.com/in/mohammad-shadmaan-asif' },
+      { label: 'LinkedIn', value: 'mohammad-shadmaan-asif-161bb1117', href: 'https://www.linkedin.com/in/mohammad-shadmaan-asif-161bb1117/' },
       { label: 'GitHub', value: 'shadmaanAsif', href: 'https://github.com/shadmaanAsif' },
       { label: 'Website', value: 'comparefiles.net', href: 'https://comparefiles.net' },
     ],
